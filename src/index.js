@@ -1,3 +1,4 @@
+// server code
 const path = require('path')
 const http = require('http')
 const express = require('express')
@@ -13,11 +14,22 @@ const publicDirectoryPath = path.join(__dirname, '../public')
 
 app.use(express.static(publicDirectoryPath))
 
-io.on('connection', () => {
+// let count = 0
+
+io.on('connection', (socket) => {
     console.log('new websocket connection.')
+
+    socket.emit('message', 'Welcome!')
+
+    socket.on('sendMessage', (message) => {
+        io.emit('message', message)
+        // count++
+        // socket.emit('message', 'Welcome!!')
+        // io.emit('countUpdated', count)
+    })
 })
 
-app.listen(port, () => {
+server.listen(port, () => {
     console.log('Server is up on port ' + port)
 })
 
