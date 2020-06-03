@@ -6,20 +6,38 @@ socket.on('message', (msg) => {
 })
 
 
-document.querySelector('#message-form').addEventListener(
+const $messageForm = document.querySelector('#message-form');
+
+$messageForm.addEventListener(
         'submit', (e) => {
     e.preventDefault()
-//    const message = document.querySelector('input').value
+    // disable
     const message = e.target.elements.message.value
-    socket.emit('sendMessage', message)
-    
-    // console.log('Clicked!!')
-    // socket.emit('client')
+    // setting up callback function, and paramter 'error': (error) => {}
+    socket.emit('sendMessage', message, (error) => {
+        // enable
+        if (error) {
+            return console.log(error)
+        }
+    })
+    console.log('The message was delivered!')
 })
 
-// document.querySelector('#connect').addEventListener('click', () => {
-//     console.log('Clicked!!')
-//     socket.emit('client')
-// })
+document.querySelector('#send-location')
+        .addEventListener('click', () => {
+    if (!navigator.geolocation) {
+        return alert('geolocation not supported by your browser')
+    }
+    navigator.geolocation.getCurrentPosition((position) => {
+        console.log('position: ', position.coords)
+        socket.emit('sendLocation', {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+        }, () => {
+//            console.log('Location shared.')
+        })
+    })
+})
+
 
 
