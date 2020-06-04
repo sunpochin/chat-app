@@ -20,7 +20,7 @@ io.on('connection', (socket) => {
     console.log('new websocket connection.')
 
 //    socket.emit('message', generateMessage('Welcome!'))
-    socket.emit('message', 'Welcome!')
+    socket.emit('message', generateMessage('Welcome!') )
     socket.broadcast.emit('message', 'A new user has joined!')
 
     socket.on('sendMessage', (message, callback) => {
@@ -28,7 +28,7 @@ io.on('connection', (socket) => {
         if (filter.isProfane(message)) {
             return callback('Profanity not allowed.')
         }
-        io.emit('message', message)
+        io.emit('message', generateMessage(message) )
         callback()
     })
 
@@ -39,7 +39,7 @@ io.on('connection', (socket) => {
     })
     
     socket.on('disconnect', () => {
-        io.emit('message', 'A user has left.')
+        io.emit('message', generateMessage('A user has left.') )
     })
 })
 

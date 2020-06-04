@@ -12,12 +12,13 @@ const $messages = document.querySelector('#messages')
 const messageTemplate = document.querySelector('#message-template').innerHTML
 const urlTemplate = document.querySelector('#url-template').innerHTML
 
-socket.on('message', (msg) => {
-    console.log('server greeted: ', msg)
+socket.on('message', (obj) => {
+    console.log('server greeted: ', obj)
     const html = Mustache.render(messageTemplate, {
-        msg
+        msg: obj.text,
+        createAt: moment(obj.createAt).format('h:mm:ss a') 
     })
-    console.log('html: ', html)
+    // console.log('html: ', html)
     $messages.insertAdjacentHTML('beforeend', html)
 })
 
