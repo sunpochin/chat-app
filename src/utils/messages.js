@@ -1,4 +1,5 @@
 
+
 const generateMessage = (text) => {
     const themsg = {
         text: text,
@@ -7,7 +8,16 @@ const generateMessage = (text) => {
     return themsg
 }
 
+const generateLocationMessage = (url) => {
+    const themsg = {
+        url: url,
+        createAt: new Date().getTime()
+    }
+    return themsg
+}
+
 module.exports = {
-    generateMessage
+    generateMessage,
+    generateLocationMessage
 }
 
