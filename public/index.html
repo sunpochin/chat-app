@@ -1,26 +1,47 @@
 <!DOCTYPE html>
 <html>
     <head>
-
+        <title>Chat App</title>
+        <link rel="icon" herf="/img/favicon.png">
+        <link rel="stylesheet" href="/css/styles.min.css">
     </head>
     <body>
+        <div class="chat">
+            <div class="chat__sidebar">
+
+            </div>
+            <div class="chat__main">
+                <div id="messages" class="chat__messages"></div>
+
+                <div class="compose">
+                    <form id="message-form">
+                        <input name="message" placeholder="Message">
+                        <button>Send</button>
+                    </form>
+                    <button id="send-location">send location</button>
+                </div>
+
+            </div>
+        </div>
         Chat App
 
-        <div id="messages"></div>
-        <form id="message-form">
-            <input name="message" placeholder="Message">
-            <button>Send</button>
-        </form>
-        <button id="send-location">send location</button>
         <script id="message-template" type="text/html">
-            <div>
-                <p>{{createAt}} - {{msg}}</p>
+            <div class="message">
+                <p>
+                    <span class="message__name">Some user name</span>
+                    <span class="message__meta">{{createAt}}</span>
+                </p>
+                <p>{{msg}}</p>
             </div>
         </script>
 
         <script id="url-template" type="text/html">
-            <div>
-                <p>{{createAt}} - <a href="{{url}}"> my current location</a></p>
+            <div class="message">
+                <p>
+                    <span class="message__name">Some user name</span>
+                    <span class="message__meta">{{createAt}}</span>
+                </p>
+                <p><a href="{{url}}" target="_blank"> my current location</a></p>
             </div>
         </script>
 
