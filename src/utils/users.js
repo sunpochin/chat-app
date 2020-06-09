@@ -27,8 +27,9 @@ const addUser = ({ id, username, room }) => {
 
     // Store user
     const user = { id, username, room }
+    // console.log('User: ', user)
     users.push(user)
-    return user
+    return { user }
 }
 
 
@@ -86,5 +87,6 @@ module.exports = {
     addUser,
     removeUser,
     getUser,
-    getUserInRoom
+    getUsersInRoom
 }
+
