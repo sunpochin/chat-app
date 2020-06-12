@@ -41,11 +41,10 @@ const removeUser = (id) => {
     }
 }
 
-console.log(users)
-const userRemoved = removeUser(22)
-
-console.log('userRemoved: ', userRemoved)
-console.log('users: ', users)
+// console.log(users)
+// const userRemoved = removeUser(22)
+// console.log('userRemoved: ', userRemoved)
+// console.log('users: ', users)
 
 
 const getUser = (id) => {
@@ -76,11 +75,11 @@ addUser({
 })
 
 const user = getUser(42)
-console.log(user)
+// console.log(user)
 
 
 const userList = getUsersInRoom('south philly')
-console.log(userList)
+// console.log(userList)
 
 
 module.exports = {
